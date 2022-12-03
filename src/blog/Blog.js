@@ -1,0 +1,112 @@
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from './Header';
+import MainFeaturedPost from './MainFeaturedPost';
+import FeaturedPost from './FeaturedPost';
+import Main from './Main';
+import Sidebar from './Sidebar';
+import Footer from './Footer';
+import post1 from './blog-post.1.md';
+import post2 from './blog-post.2.md';
+import post3 from './blog-post.3.md';
+
+const sections = [
+  { title: 'オフショア開発', url: '#' },
+  { title: 'NALブログ', url: '#' },
+  { title: 'ベトナム情報', url: '#' },
+  { title: 'お問い合わせ', url: '#' }
+];
+
+const mainFeaturedPost = {
+  title: 'スクラムチェックリスト',
+  description:
+    "スクラムマスターになることを目指しているあなた、またはプロのスクラムマスターになるための最初の一歩を踏み出しているあなたも、NALのSEのTran Duy Truongによる以下の記事でスクラムマストターが何をすべきか、仕事の概要を説明られます。",
+  image: '/image/5.jpg',
+  imageText: 'main image description',
+  linkText: 'Continue reading…',
+};
+
+const featuredPosts = [
+  {
+    title: '日本とベトナム オフショア開発の課題',
+    date: 'October 27, 2020',
+    description:
+      '現在ベトナムと日本は政治経済共に良好な関係を築いており、ベトナム オフショア 会社から...',
+    image: '/image/2.jpg',
+    imageLabel: 'Image Text',
+  },
+  {
+    title: 'ベトナム オフショア 失敗の原因',
+    date: 'October 14, 2020',
+    description:
+      'オフショア市場の魅力を求め、多くのテクノロジー企業がソフトウェアのアウトソーシングに目...',
+    image: '/image/3.jpg',
+    imageLabel: 'Image Text',
+  },
+];
+
+const posts = [post1, post2, post3];
+
+const sidebar = {
+  title: 'About',
+  description:
+    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+  archives: [
+    { title: 'March 2020', url: '#' },
+    { title: 'February 2020', url: '#' },
+    { title: 'January 2020', url: '#' },
+    { title: 'November 1999', url: '#' },
+    { title: 'October 1999', url: '#' },
+    { title: 'September 1999', url: '#' },
+    { title: 'August 1999', url: '#' },
+    { title: 'July 1999', url: '#' },
+    { title: 'June 1999', url: '#' },
+    { title: 'May 1999', url: '#' },
+    { title: 'April 1999', url: '#' },
+  ],
+  social: [
+    { name: 'GitHub', icon: GitHubIcon },
+    { name: 'Twitter', icon: TwitterIcon },
+    { name: 'Facebook', icon: FacebookIcon },
+  ],
+};
+
+const theme = createTheme();
+
+export default function Blog() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Header title="NAL MEDIA" sections={sections} />
+        <main>
+          <MainFeaturedPost post={mainFeaturedPost} />
+          <Grid container spacing={4}>
+            {featuredPosts.map((post) => (
+              <FeaturedPost key={post.title} post={post} />
+            ))}
+          </Grid>
+          <Grid container spacing={5} sx={{ mt: 3 }}>
+            <Main title="Lasted News" posts={posts} />
+            <Sidebar
+              title={sidebar.title}
+              description={sidebar.description}
+              archives={sidebar.archives}
+              social={sidebar.social}
+            />
+          </Grid>
+        </main>
+      </Container>
+      <Footer
+        title="Footer"
+        description="Something here to give the footer a purpose!"
+      />
+    </ThemeProvider>
+  );
+}
