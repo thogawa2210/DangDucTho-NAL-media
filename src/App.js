@@ -1,3 +1,4 @@
+import './App.css'
 import Grid from "@mui/material/Grid";
 import * as React from 'react';
 import Button from "@mui/material/Button";
@@ -34,7 +35,7 @@ const hotnews = {
     title: 'スクラムチェックリスト',
     content: 'スクラムマスターになることを目指しているあなた、またはプロのスクラムマスターになるための最初の一歩を踏み出しているあなたも、NALのSEのTran Duy Truongによる以下の記事でスクラムマストターが何をすべきか、仕事の概要を説明られます。',
     category_name: 'HOT NEWS',
-    image: '/image/5.jpg'
+    image: '/image/1.jpg'
 }
 
 const topView = [
@@ -292,19 +293,25 @@ function App() {
                     <hr/>
                     <List sx={{width: '100%',}}>
                         {latestNews.map((post, index) => (
-                            <ListItem alignItems="flex-start" key={index}>
-                                <img src={`/image/${post.image}.jpg`}/>
-                                <ListItemText>
-                                    <Typography sx={{
-                                        backgroundColor: randomColor(),
-                                        display: 'table'
-                                    }}>{post.category_name}</Typography>
-                                    <h4>{post.title}</h4>
-                                    <Typography sx={{color: 'grey'}}>{post.date}</Typography>
-                                    <br/>
-                                    <p>{post.content}</p>
-                                </ListItemText>
-                            </ListItem>
+                                <ListItem alignItems="flex-start" key={index}>
+                                    <Grid container>
+                                        <Grid item xs={12} md={5}>
+                                            <img src={`/image/${post.image}.jpg`}/>
+                                        </Grid>
+                                        <Grid item xs={12} md={7}>
+                                            <ListItemText>
+                                                <Typography sx={{
+                                                    backgroundColor: randomColor(),
+                                                    display: 'table'
+                                                }}>{post.category_name}</Typography>
+                                                <h4>{post.title}</h4>
+                                                <Typography sx={{color: 'grey'}}>{post.date}</Typography>
+                                                <br/>
+                                                <p>{post.content}</p>
+                                            </ListItemText>
+                                        </Grid>
+                                    </Grid>
+                                </ListItem>
                         ))}
                     </List>
                 </Grid>
